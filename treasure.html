@@ -69,8 +69,8 @@
                 </div>
             </div>
             <div class="container text-center">
-                <button class="btn btn-success" type="submit" onclick="resetGame()">Reset</button>
-            </div>
+              <button class="btn btn-success" type="submit" onclick="resetGame()">Reset</button>
+          </div>
             <br>
 
 
@@ -225,20 +225,22 @@
                     document.getElementById("help").innerHTML = "Sorry, no help available"
                 }
             }
-            function swap() {
-                let cyclerItems = document.getElementsByClassName("cycler")
-                let container = document.getElementById("target")
-                let a = Math.floor(Math.random() * cyclerItems.length)
-                let b = Math.floor(Math.random() * cyclerItems.length)
-                let firstInnerText = document.getElementsByClassName("cycler")[a]
-                let secondInnerText = document.getElementsByClassName("cycler")[b]
-                if(cyclerItems.length > 1) {
-                    let temp = firstInnerText.innerHTML
-                    firstInnerText.innerHTML = secondInnerText.innerHTML
-                    secondInnerText.innerHTML = temp
+            function resetGame() {
+                treasureLocation = Math.floor(Math.random() * 24)
+                while(treasureLocation == 12) {
+                    treasureLocation = Math.floor(Math.random() * 24)
                 }
-            }
+                chestCount = 0
+                score = 0
+                document.getElementById("chests").innerHTML = "Number of chests checked is zero"
+                document.getElementById("score").innerHTML = "Score is unknown"
+                for(let i = 0; i < 24; i++) {
+                    if(i != 12) {
+                        document.getElementById(ids[i]).src = "treasure chest.jpg"
+                    }
+                }
+              }
           </script>
          </script>
       </body>
-      </html>
+</html>
