@@ -1,78 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Anusha Bichal Reaction</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <style>
-    body {background-color:rgb(255, 255, 255)}
-  </style>
-</head>
-<body>
+    <head>
+        <title>Reaction Game</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <h2>Anusha Bichal Reaction Timer</h2>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Indie+Flower&display=swap" rel="stylesheet">
+        
+        <style>
+            h1 {
+              color: #000000;
+              font-family: Arial, Helvetica, sans-serif;
+               font-weight: bold;
+               padding: 5px;
+               margin-bottom: 5px;
+               text-shadow: 2px 2px #fcf9f9;
+               
+            }
+            .menu {
+                background-color: #88c9bf;
+                padding: 3px;
+                text-align: center;
+                width: 500px;
+                 margin-left: 300px;
+            }
+            #target {
+                background-color: rgb(223, 223, 231);
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 800;
+                font-size: 18px;
+                margin: 6px;
+            }
+            #countdown {
+                background-color: rgb(223, 223, 231);
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 800;
+                font-size: 18px;
+                margin: 6px;
+            }
+            button {
+                margin: 20px;
+            }
+        </style>
 
-  <div id="yourTime">Your time: </div>
-  <div id="count">Count: </div>
+    </head>
 
-  <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
+    <body>
+        
+        <div class="container text-center">
+            <h1 style="margin-bottom: 5px;margin-top: 10px;">Anusha Bichal Reaction Timer</h1>
+            <div class="row menu">
+                <div class="col-md">
+                    <p id="target">Your time</p>
+                </div>
+                <div class="col-md">
+                    <p id="countdown">Count</p>
+                </div>
+            </div>
+            <div class="container text-center">
+                <button class="btn btn-warning" type="submit" onclick="startTime()">Start Timer</button>
+                <button class="btn btn-danger" type="submit" onclick="recordReact()">React Now</button>
+            </div>
+        </div>
+        
 
-  <button type="button" class="btn btn-secondary" onclick="recordReact()">React</button>
-    
-  <script> 
-  var countOut = document.getElementById("count")
-  var yourTimeOut = document.getElementById("yourTime")
+       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  let myTime = undefined
-  let buttonTime = undefined
-  let elapsedTime = undefined
+       
+        <script>
+            var myTime = Date.now()
 
-  function startTime()
-  {
-    var randTimer = Math.floor(Math.random()*9)+2 //random 2-10
+            function recordReact() {
+                myTime = Date.now()
+                console.log(myTime)
+            }
 
-    myTime = undefined //reset timer for multiple uses
-    for(let i=0;i<=randTimer;i++)
-    {
-      setTimeout(() => {
-        countOut.innerHTML = "Count: " + i
-        //console.log("Count: " + i)
-      }, 
-        ((randTimer-i)*1000)
-      );
-      
-    }
-    setTimeout(function() {
-      if (myTime === undefined) {
-        yourTimeOut.innerHTML = "Too Slow"
-      } else {
-        buttonTime = Date.now()
-        elapsedTime = -(myTime - buttonTime)
-        yourTimeOut.innerHTML = "Time was " + elapsedTime + "ms"
-      }
-    }, randTimer*1000)
+            
+            function startTime() {
+                let countdown = Math.floor(Math.random() * 9) + 2
+                console.log()
+                for(let i = 0; i < countdown; i++) {
+                    setTimeout(() => {
+                        document.getElementById("countdown").innerHTML = i
+                    }, ((countdown-1-i)*1000));
+                }
+                setTimeout(() => {
+                    if(myTime == undefined) {
+                        document.getElementById("target").innerHTML = "Too Slow"
+                    } else {
+                        let buttonTime = Date.now()
+                        document.getElementById("target").innerHTML = "Time was " + (buttonTime - myTime)
+                    }
+                }, 3000);
+            }
+        </script>
 
+    </body>
 
-  }
-
-  function recordReact()
-  {
-    myTime = Date.now()
-    console.log("Start time: " + myTime)
-
-  }
-  </script>
-
-  <div><a href="treasure.html">Treasure</a></div>
-  <div><a href="cycler.html">Cycler</a></div>
-  <div><a href="reaction.html">Reaction</a></div>
-
-
-
-</body>
 </html>
