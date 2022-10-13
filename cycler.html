@@ -2,15 +2,15 @@
 <html> <head> <style>
     .flex-container {
       display: flex;  flex-direction:row;
-      background-color: red;
+      background-color: rgb(96, 170, 145);
   }
 
-.flex-container > div {  /*div children of the flex container*/
+.flex-container > div {  
   background-color: #f1f1f1; 
   margin: 10px;  padding: 20px;  font-size: 30px;
 }
 
-/* Responsive layout */
+
 @media (max-width: 600px) { 
 	 .flex-container{
 		 flex-direction:column;
@@ -43,14 +43,14 @@
 <script>
 	let valueIn = document.getElementById("input")
 	function makeNewDiv(){
-		/* make the div and its text */
+	
 		let element = document.createElement("div")
 		let data = valueIn.value
 		element.innerHTML = data
-		element.style.color = "orange"
+		element.style.color = "violet"
 		element.className="cycler"
 
-		/* add it to the container */
+		
 		let container = document.getElementById('target')
 		container.appendChild(element)
 	}
