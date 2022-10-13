@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html> <head> <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style>
+	<title>Cycler</title>
+</head>
+
+
+
+<body>
+	<h2>Anusha Bichal builds a Cycler</h2>
+		<div class="flex-container" id="target">
+		  <div class="cycler">row item 1</div>   
+		  <div class="cycler">row item 2</div>  
+		  <div class="cycler">row item 3</div>  
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.</p>
+	<label for="input">Add value:</label>
+	<input type="text" id="input">
+	<button onclick="makeNewDiv()">Add one</button>
+	<button onclick="get()">Get</button>
+	<button onclick="spin()">Spin</button>
+	
+
+	<div><a href="treasure.html">Treasure</a></div>
+	<div><a href="cycler.html">Cycler</a></div>
+	<div><a href="reaction.html">Reaction</a></div>
+
+	
+</body>
+<script>
+	let valueIn = document.getElementById("input")
+	function makeNewDiv(){
+		/* make the div and its text */
+		let element = document.createElement("div")
+		let data = valueIn.value
+		element.innerHTML = data
+		element.style.color = "orange"
+		element.className="cycler"
+
+		/* add it to the container */
+		let container = document.getElementById('target')
+		container.appendChild(element)
+	}
+
+	function get()
+	{
+		let cyclerItems = document.getElementsByClassName("cycler")
+
+		if (cyclerItems.length > 0) 
+		{
+			cyclerItems[cyclerItems.length - 1].remove()
+		}
+	}
+
+	function spin()
+	{
+		let cyclerItems=document.getElementsByClassName("cycler")
+		if(cyclerItems.length>1)
+		{
+			let removedItem=cyclerItems[cyclerItems.length - 1]
+			cyclerItems[cyclerItems.length-1].remove()
+
+			let container = document.getElementById('target')
+			container.insertBefore(removedItem,container.firstChild)
+		}
+	}
+</script>
+</html>	
